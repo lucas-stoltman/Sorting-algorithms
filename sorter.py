@@ -4,4 +4,11 @@
 # CSS 340 A, Dimpsey
 # Version: 1.0
 
-# Driver
+import sort
+import sys
+
+sort_type = str(sys.argv[1])
+length = eval(sys.argv[2])
+
+# PRINT (optional)
+display = str(sys.argv[3])
