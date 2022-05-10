@@ -6,19 +6,25 @@
 
 # Bubble Sort
 def bubble_sort(arr: list):
+    # run through the entire list n times
     for i in range(len(arr)):
+        # run through the entire list once
         for j in range(len(arr)-i-1):
             if arr[j] > arr[j+1]:
+                # swap values if they're out of order
                 arr[j], arr[j+1] = arr[j+1], arr[j]
-
     return True
 
 
-# TODO Insertion Sort
+# Insertion Sort
 def insertion_sort(arr: list):
-    for i in range(len(arr)):
-        if arr[i] < arr[i+1]:
-            arr[i], arr[i+1] = arr[i+1], arr[i]
+    for i in range(1, len(arr)):
+        pointer = arr[i]
+        j = i - 1
+        while j >= 0 and pointer < arr[j]:
+            arr[j + 1] = arr[j]
+            j -= 1
+        arr[j + 1] = pointer
     return True
 
 

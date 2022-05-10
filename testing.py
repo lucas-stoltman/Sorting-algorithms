@@ -14,10 +14,22 @@ import sys
 # display = str(sys.argv[3])
 
 # Driver
-listy = [5, 2, 5, 6, 3, 2, 1]
 
-print(listy)
-print("sort")
 
-bubble_sort(listy)
-print(listy)
+# --- bubble_sort() ---
+print("\n---\033[1m", "bubble_sort()", "\033[0m---", )
+bubble_list = [5, 2, 5, 6, 3, 9, 2, 1]
+print(bubble_list)
+sort.bubble_sort(bubble_list)
+print(bubble_list)
+
+
+# --- insertion_sort() ---
+print("\n---\033[1m", "insertion_sort()", "\033[0m---", )
+insertion_list = [5, 2, 5, 6, 3, 9, 2, 1]
+print(insertion_list)
+sort.insertion_sort(insertion_list)
+print(insertion_list)
+
+
+
