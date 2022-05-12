@@ -32,4 +32,10 @@ sort.insertion_sort(insertion_list)
 print(insertion_list)
 
 
+# --- merge_sort() ---
+print("\n---\033[1m", "merge_sort()", "\033[0m---", )
+merge_list = [5, 2, 5, 6, 3, 9, 2, 1]
+print(merge_list)
+sort.merge_sort(merge_list)
+print(merge_list)
 
