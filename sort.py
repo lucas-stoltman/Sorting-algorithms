@@ -9,10 +9,10 @@ def bubble_sort(arr: list):
     # run through the entire list n times
     for i in range(len(arr)):
         # run through the entire list once
-        for j in range(len(arr)-i-1):
-            if arr[j] > arr[j+1]:
+        for j in range(len(arr) - i - 1):
+            if arr[j] > arr[j + 1]:
                 # swap values if they're out of order
-                arr[j], arr[j+1] = arr[j+1], arr[j]
+                arr[j], arr[j + 1] = arr[j + 1], arr[j]
     return True
 
 
@@ -28,15 +28,108 @@ def insertion_sort(arr: list):
     return True
 
 
-# TODO Merge Sort
-# def marge_sort():
+# Merge Sort
+def merge_sort(arr: list):
+    if len(arr) > 1:
+        mid = len(arr) // 2
+
+        # LEFT half
+        left = arr[mid:]
+        # RIGHT half
+        right = arr[:mid]
+
+        # recursive calls
+        merge_sort(left)
+        merge_sort(right)
+
+        # reset loop variables
+        i = j = k = 0
+
+        # ordering values within arr[]
+        while i < len(left) and j < len(right):
+            # if comparison is already sorted
+            if left[i] < right[j]:
+                # place LEFT value to the left
+                arr[k] = left[i]
+                i += 1
+            else:
+                # place RIGHT value to the left
+                arr[k] = right[j]
+                j += 1
+            k += 1
+
+        # checking extra elements after the mergesort
+        # LEFT side
+        while i < len(left):
+            arr[k] = left[i]
+            k += 1
+            i += 1
+
+        # RIGHT side
+        while j < len(right):
+            arr[k] = right[j]
+            k += 1
+            j += 1
+
 
 # TODO Non-Recursive, one extra list Merge Sort (We’ll call this improved version,
 # IterativeMergeSort from here on out in this homework)
 # def iterative_merge_sort():
 
-# TODO Quick Sort
-# def quick_sort():
+# TODO Sedgewick points
+# partition for quick_sort()
+def partition(arr: list, low, high):
+    # Choose the rightmost element as pivot
+    pivot = arr[high]
 
-# TODO Shell Sort
-# def shell_sort():
+    # Pointer for greater element
+    i = low - 1
+
+    # Traverse through all elements
+    # compare each element with pivot
+    for j in range(low, high):
+        if arr[j] <= pivot:
+            # If element smaller than pivot is found
+            # swap it with the greater element pointed by i
+            i = i + 1
+
+            # Swapping element at i with element at j
+            (arr[i], arr[j]) = (arr[j], arr[i])
+
+    # Swap the pivot element with the greater element specified by i
+    (arr[i + 1], arr[high]) = (arr[high], arr[i + 1])
+
+    # Return the position from where partition is done
+    return i + 1
+
+
+# TODO Quick Sort
+def quick_sort(arr: list):
+    if low < high:
+        # Find pivot element such that
+        # element smaller than pivot are on the left
+        # element greater than pivot are on the right
+        pi = partition(arr, low, high)
+
+        # Recursive call on the left of pivot
+        quick_sort(arr, low, pi - 1)
+
+        # Recursive call on the right of pivot
+        quick_sort(arr, pi + 1, high)
+
+
+def shell_sort(arr: list):
+    size = len(arr)
+    gap = size // 2
+    while gap > 0:
+        for i in range(gap, size):
+            temp = arr[i]
+            j = i
+            while j >= gap and temp < arr[j - gap]:
+                arr[j] = arr[j - gap]
+                j -= gap
+            arr[j] = temp
+        if gap == 2:
+            gap = 1
+        else:
+            gap = int(gap / 2.2)
