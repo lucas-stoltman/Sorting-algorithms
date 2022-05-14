@@ -72,16 +72,13 @@ def merge_sort(arr: list):
             j += 1
 
 
-# TODO Non-Recursive, one extra list Merge Sort (We’ll call this improved version,
-# IterativeMergeSort from here on out in this homework)
+# TODO Non-Recursive, one extra list Merge Sort
 # def iterative_merge_sort():
-
 
 
 # TODO Sedgewick points
 # TODO Quick Sort
 # def quick_sort(arr: list):
-
 
 
 def shell_sort(arr: list):
