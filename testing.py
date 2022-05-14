@@ -7,14 +7,6 @@
 import sort
 import sys
 
-# sort_type = str(sys.argv[1])
-# length = eval(sys.argv[2])
-
-# PRINT (optional)
-# display = str(sys.argv[3])
-
-# Driver
-
 
 # --- bubble_sort() ---
 print("\n---\033[1m", "bubble_sort()", "\033[0m---", )
@@ -39,26 +31,19 @@ print(merge_list)
 sort.merge_sort(merge_list)
 print(merge_list)
 
-'''
+
 # --- iterative_merge_sort() ---
 print("\n---\033[1m", "iterative_merge_sort()", "\033[0m---", )
-merge_list = [5, 2, 5, 6, 3, 9, 2, 1]
-print(merge_list)
-sort.merge_sort(merge_list)
-print(merge_list)
-'''
+iterative_merge_list = [5, 2, 5, 6, 3, 9, 2, 1]
+print(iterative_merge_list)
+sort.iterative_merge_sort(iterative_merge_list)
+print(iterative_merge_list)
+
 
 # # --- quick_sort() ---
 # print("\n---\033[1m", "quick_sort()", "\033[0m---", )
 # quick_list = [5, 2, 5, 6, 3, 9, 2, 1]
 # print(quick_list)
-# 
-# 
-# # Sedgewick implementation
-# # mid = len(quick_list) // 2
-# # temp = [quick_list[0], quick_list[mid], quick_list[-1]]
-# # temp.sort()
-# 
 # sort.quick_sort(quick_list, 0, quick_list[-1])
 # print(quick_list)
 

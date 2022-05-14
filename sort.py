@@ -76,46 +76,12 @@ def merge_sort(arr: list):
 # IterativeMergeSort from here on out in this homework)
 # def iterative_merge_sort():
 
+
+
 # TODO Sedgewick points
-# partition for quick_sort()
-def partition(arr: list, low, high):
-    # Choose the rightmost element as pivot
-    pivot = arr[high]
-
-    # Pointer for greater element
-    i = low - 1
-
-    # Traverse through all elements
-    # compare each element with pivot
-    for j in range(low, high):
-        if arr[j] <= pivot:
-            # If element smaller than pivot is found
-            # swap it with the greater element pointed by i
-            i = i + 1
-
-            # Swapping element at i with element at j
-            (arr[i], arr[j]) = (arr[j], arr[i])
-
-    # Swap the pivot element with the greater element specified by i
-    (arr[i + 1], arr[high]) = (arr[high], arr[i + 1])
-
-    # Return the position from where partition is done
-    return i + 1
-
-
 # TODO Quick Sort
-def quick_sort(arr: list):
-    if low < high:
-        # Find pivot element such that
-        # element smaller than pivot are on the left
-        # element greater than pivot are on the right
-        pi = partition(arr, low, high)
+# def quick_sort(arr: list):
 
-        # Recursive call on the left of pivot
-        quick_sort(arr, low, pi - 1)
-
-        # Recursive call on the right of pivot
-        quick_sort(arr, pi + 1, high)
 
 
 def shell_sort(arr: list):
