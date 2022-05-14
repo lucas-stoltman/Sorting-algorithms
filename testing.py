@@ -7,6 +7,7 @@
 import sort
 import sys
 import random
+import timeit
 
 length = 10
 
@@ -15,12 +16,17 @@ arr = []
 for i in range(length):
     arr.append(random.randint(0, 10))
 
-
 # --- bubble_sort() ---
 print("\n---\033[1m", "bubble_sort()", "\033[0m---", )
 random.shuffle(arr)
 print(arr)
 sort.bubble_sort(arr)
+
+# timeit
+t = timeit.Timer(f"sort.bubble_sort({arr})", "import sort")
+duration = t.timeit(1000)
+print("Time:", duration, "ms")
+
 print(arr)
 
 
@@ -28,7 +34,12 @@ print(arr)
 print("\n---\033[1m", "insertion_sort()", "\033[0m---", )
 random.shuffle(arr)
 print(arr)
-sort.insertion_sort(arr)
+
+# timeit
+t = timeit.Timer(f"sort.insertion_sort({arr})", "import sort")
+duration = t.timeit(1000)
+print("Time:", duration, "ms")
+
 print(arr)
 
 
@@ -36,7 +47,12 @@ print(arr)
 print("\n---\033[1m", "merge_sort()", "\033[0m---", )
 random.shuffle(arr)
 print(arr)
-sort.merge_sort(arr)
+
+# timeit
+t = timeit.Timer(f"sort.merge_sort({arr})", "import sort")
+duration = t.timeit(1000)
+print("Time:", duration, "ms")
+
 print(arr)
 
 
@@ -45,7 +61,10 @@ print(arr)
 # print("\n---\033[1m", "iterative_merge_sort()", "\033[0m---", )
 # random.shuffle(arr)
 # print(arr)
-# sort.iterative_merge_sort(arr)
+# timeit
+# t = timeit.Timer(f"sort.iterative_merge_sort({arr})", "import sort")
+# duration = t.timeit(1000)
+# print("Time:", duration, "ms")
 # print(arr)
 
 
@@ -54,7 +73,10 @@ print(arr)
 # print("\n---\033[1m", "quick_sort()", "\033[0m---", )
 # random.shuffle(arr)
 # print(arr)
-# sort.quick_sort(arr)
+# timeit
+# t = timeit.Timer(f"sort.quick_sort({arr})", "import sort")
+# duration = t.timeit(1000)
+# print("Time:", duration, "ms")
 # print(arr)
 
 
@@ -62,5 +84,10 @@ print(arr)
 print("\n---\033[1m", "shell_sort()", "\033[0m---", )
 random.shuffle(arr)
 print(arr)
-sort.shell_sort(arr)
+
+# timeit
+t = timeit.Timer(f"sort.insertion_sort({arr})", "import sort")
+duration = t.timeit(1000)
+print("Time:", duration, "ms")
+
 print(arr)
