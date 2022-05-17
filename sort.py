@@ -61,66 +61,45 @@ def merge_sort(a_list):
 
 # TODO Non-Recursive, one extra list Merge Sort
 # TODO Change comments
-# def iterative_merge_sort(arr: list):
-# width = 1
-# n = len(arr)
-# # subarray size grows by powers of 2
-# # since growth of loop condition is exponential,
-# # time consumed is logarithmic (log2n)
-# while width < n:
-#     # always start from leftmost
-#     left = 0
-#     while left < n:
-#         r = min(left + (width * 2 - 1), n - 1)
-#         m = min(left + width - 1, n - 1)
-#         # final merge should consider
-#         # unmerged sublist if input arr
-#         # size is not power of 2
-#         merge(arr, left, m, r)
-#         left += width * 2
-#     # Increasing sub array size by powers of 2
-#     width *= 2
-# return arr
-
-# Bottom-up merge sort is a non-recursive variant of the merge sort,
-# in which the array is sorted by a sequence of passes.
-# During each pass, the array is divided into blocks of size m.
-# (Initially, m = 1). Every two adjacent blocks are merged (as in normal merge sort),
-# and the next pass is made with a twice larger value of m.
-
-
-# def partition(arr, low, high):
-#     i = (low - 1)  # index of smaller element
-#     pivot = arr[high]  # pivot
-#
-#     for j in range(low, high):
-#
-#         # If current element is smaller than or
-#         # equal to pivot
-#         if arr[j] <= pivot:
-#             # increment index of smaller element
-#             i = i + 1
-#             arr[i], arr[j] = arr[j], arr[i]
-#
-#     arr[i + 1], arr[high] = arr[high], arr[i + 1]
-#     return i + 1
+# def iterative_merge_sort(a_list):
 
 
 # TODO Sedgewick points
 # TODO Quick Sort
 # TODO Quick Sort Helper (arr, low, high)
-# def quick_sort(arr: list):
-#     if len(arr) == 1:
-#         return arr
-#     if low < high:
-#         # pi is partitioning index, arr[p] is now
-#         # at right place
-#         pi = partition(arr, low, high)
-#
-#         # Separately sort elements before
-#         # partition and after partition
-#         quick_sort(arr, low, pi - 1)
-#         quick_sort(arr, pi + 1, high)
+def quick_sort(a_list):
+    quick_sort_helper(a_list, 0, len(a_list) - 1)
+
+
+def quick_sort_helper(a_list, first, last):
+    if first < last:
+        split_point = partition(a_list, first, last)
+
+        quick_sort_helper(a_list, first, split_point - 1)
+        quick_sort_helper(a_list, split_point + 1, last)
+
+
+def partition(a_list, first, last):
+    pivot_value = a_list[first]
+    left_mark = first + 1
+    right_mark = last
+    done = False
+    while not done:
+        while left_mark <= right_mark and a_list[left_mark] <= pivot_value:
+            left_mark += 1
+        while a_list[right_mark] >= pivot_value and right_mark >= left_mark:
+            right_mark -= 1
+        if right_mark < left_mark:
+            done = True
+        else:
+            temp = a_list[left_mark]
+            a_list[left_mark] = a_list[right_mark]
+            a_list[right_mark] = temp
+
+    temp = a_list[first]
+    a_list[first] = a_list[right_mark]
+    a_list[right_mark] = temp
+    return right_mark
 
 
 def shell_sort(arr: list):
