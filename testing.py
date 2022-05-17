@@ -10,7 +10,7 @@ import random
 import timeit
 
 # measure length 100, 200, 300, 400, 500, 1000
-length = 20
+length = 100
 
 # initialize list
 arr = []
@@ -48,15 +48,15 @@ sort.merge_sort(arr)
 print(arr)
 
 # TODO implementation first
-# # --- iterative_merge_sort() ---
-# print("\n---\033[1m", "iterative_merge_sort()", "\033[0m---", )
-# random.shuffle(arr)
-# print(arr)
-# t = timeit.Timer(f"sort.iterative_merge_sort({arr})", "import sort")
-# duration = t.timeit(1000)
-# print("Time:", duration, "seconds")
-# sort.iterative_merge_sort(arr)
-# print(arr)
+# --- iterative_merge_sort() ---
+print("\n---\033[1m", "iterative_merge_sort()", "\033[0m---", )
+random.shuffle(arr)
+print(arr)
+t = timeit.Timer(f"sort.iterative_merge_sort({arr})", "import sort")
+duration = t.timeit(1000)
+print("Time:", duration, "seconds")
+sort.iterative_merge_sort(arr)
+print(arr)
 
 # --- quick_sort() ---
 print("\n---\033[1m", "quick_sort()", "\033[0m---", )

@@ -28,11 +28,11 @@ def insertion_sort(arr: list):
     return True
 
 
-def merge_sort(a_list):
-    if len(a_list) > 1:
-        mid = len(a_list) // 2
-        left_half = a_list[:mid]
-        right_half = a_list[mid:]
+def merge_sort(arr: list):
+    if len(arr) > 1:
+        mid = len(arr) // 2
+        left_half = arr[:mid]
+        right_half = arr[mid:]
 
         merge_sort(left_half)
         merge_sort(right_half)
@@ -43,25 +43,77 @@ def merge_sort(a_list):
 
         while i < len(left_half) and j < len(right_half):
             if left_half[i] < right_half[j]:
-                a_list[k] = left_half[i]
+                arr[k] = left_half[i]
                 i += 1
             else:
-                a_list[k] = right_half[j]
+                arr[k] = right_half[j]
                 j += 1
             k = k + 1
         while i < len(left_half):
-            a_list[k] = left_half[i]
+            arr[k] = left_half[i]
             i = i + 1
             k = k + 1
         while j < len(right_half):
-            a_list[k] = right_half[j]
+            arr[k] = right_half[j]
             j = j + 1
             k = k + 1
 
 
 # TODO Non-Recursive, one extra list Merge Sort
 # TODO Change comments
-# def iterative_merge_sort(a_list):
+def iterative_merge_sort(arr: list):
+    # start with least partition size of 2^0 = 1
+    width = 1
+    n = len(arr)
+    # subarray size grows by powers of 2
+    # since growth of loop condition is exponential,
+    # time consumed is logarithmic (log2n)
+    while width < n:
+        # always start from leftmost
+        l = 0
+        while l < n:
+            r = min(l + (width * 2 - 1), n - 1)
+            m = min(l + width - 1, n - 1)
+            # final merge should consider
+            # unmerged sublist if input arr
+            # size is not power of 2             
+            merge(arr, l, m, r)
+            l += width * 2
+        # Increasing sub array size by powers of 2
+        width *= 2
+    return arr
+
+
+# Merge Function
+def merge(arr: list, l, m, r):
+    n1 = m - l + 1
+    n2 = r - m
+    L = [0] * n1
+    R = [0] * n2
+    for i in range(0, n1):
+        L[i] = arr[l + i]
+    for i in range(0, n2):
+        R[i] = arr[m + i + 1]
+
+    i, j, k = 0, 0, l
+    while i < n1 and j < n2:
+        if L[i] <= R[j]:
+            arr[k] = L[i]
+            i += 1
+        else:
+            arr[k] = R[j]
+            j += 1
+        k += 1
+
+    while i < n1:
+        arr[k] = L[i]
+        i += 1
+        k += 1
+
+    while j < n2:
+        arr[k] = R[j]
+        j += 1
+        k += 1
 
 
 # TODO Sedgewick points
