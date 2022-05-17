@@ -70,32 +70,33 @@ def iterative_merge_sort(arr: list):
     # time consumed is logarithmic (log2n)
     while width < n:
         # always start from leftmost
-        l = 0
-        while l < n:
-            r = min(l + (width * 2 - 1), n - 1)
-            m = min(l + width - 1, n - 1)
+        left = 0
+        while left < n:
+            right = min(left + (width * 2 - 1), n - 1)
+            mid = min(left + width - 1, n - 1)
             # final merge should consider
             # unmerged sublist if input arr
-            # size is not power of 2             
-            merge(arr, l, m, r)
-            l += width * 2
+            # size is not power of 2
+            merge(arr, left, mid, right)
+            left += width * 2
         # Increasing sub array size by powers of 2
         width *= 2
     return arr
 
 
+# TODO comment
 # Merge Function
-def merge(arr: list, l, m, r):
-    n1 = m - l + 1
-    n2 = r - m
+def merge(arr: list, left, mid, right):
+    n1 = mid - left + 1
+    n2 = right - mid
     L = [0] * n1
     R = [0] * n2
     for i in range(0, n1):
-        L[i] = arr[l + i]
+        L[i] = arr[left + i]
     for i in range(0, n2):
-        R[i] = arr[m + i + 1]
+        R[i] = arr[mid + i + 1]
 
-    i, j, k = 0, 0, l
+    i, j, k = 0, 0, left
     while i < n1 and j < n2:
         if L[i] <= R[j]:
             arr[k] = L[i]
@@ -119,38 +120,38 @@ def merge(arr: list, l, m, r):
 # TODO Sedgewick points
 # TODO Quick Sort
 # TODO Quick Sort Helper (arr, low, high)
-def quick_sort(a_list):
-    quick_sort_helper(a_list, 0, len(a_list) - 1)
+def quick_sort(arr: list):
+    quick_sort_helper(arr, 0, len(arr) - 1)
 
 
-def quick_sort_helper(a_list, first, last):
+def quick_sort_helper(arr: list, first, last):
     if first < last:
-        split_point = partition(a_list, first, last)
+        split_point = partition(arr, first, last)
 
-        quick_sort_helper(a_list, first, split_point - 1)
-        quick_sort_helper(a_list, split_point + 1, last)
+        quick_sort_helper(arr, first, split_point - 1)
+        quick_sort_helper(arr, split_point + 1, last)
 
 
-def partition(a_list, first, last):
-    pivot_value = a_list[first]
+def partition(arr: list, first, last):
+    pivot_value = arr[first]
     left_mark = first + 1
     right_mark = last
     done = False
     while not done:
-        while left_mark <= right_mark and a_list[left_mark] <= pivot_value:
+        while left_mark <= right_mark and arr[left_mark] <= pivot_value:
             left_mark += 1
-        while a_list[right_mark] >= pivot_value and right_mark >= left_mark:
+        while arr[right_mark] >= pivot_value and right_mark >= left_mark:
             right_mark -= 1
         if right_mark < left_mark:
             done = True
         else:
-            temp = a_list[left_mark]
-            a_list[left_mark] = a_list[right_mark]
-            a_list[right_mark] = temp
+            temp = arr[left_mark]
+            arr[left_mark] = arr[right_mark]
+            arr[right_mark] = temp
 
-    temp = a_list[first]
-    a_list[first] = a_list[right_mark]
-    a_list[right_mark] = temp
+    temp = arr[first]
+    arr[first] = arr[right_mark]
+    arr[right_mark] = temp
     return right_mark
 
 
