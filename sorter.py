@@ -32,7 +32,6 @@ if len(sys.argv) > 1:
         print("Please enter a string.")
         print("You entered:", sys.argv[1], "\n")
 
-
 # list length
 if len(sys.argv) >= 3:
     try:

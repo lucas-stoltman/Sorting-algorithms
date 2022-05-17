@@ -28,52 +28,65 @@ def insertion_sort(arr: list):
     return True
 
 
-# Merge Sort
-def merge_sort(arr: list):
-    if len(arr) > 1:
-        mid = len(arr) // 2
+def merge_sort(a_list):
+    if len(a_list) > 1:
+        mid = len(a_list) // 2
+        left_half = a_list[:mid]
+        right_half = a_list[mid:]
 
-        # LEFT half
-        left = arr[mid:]
-        # RIGHT half
-        right = arr[:mid]
+        merge_sort(left_half)
+        merge_sort(right_half)
 
-        # recursive calls
-        merge_sort(left)
-        merge_sort(right)
+        i = 0
+        j = 0
+        k = 0
 
-        # reset loop variables
-        i = j = k = 0
-
-        # ordering values within arr[]
-        while i < len(left) and j < len(right):
-            # if comparison is already sorted
-            if left[i] < right[j]:
-                # place LEFT value to the left
-                arr[k] = left[i]
+        while i < len(left_half) and j < len(right_half):
+            if left_half[i] < right_half[j]:
+                a_list[k] = left_half[i]
                 i += 1
             else:
-                # place RIGHT value to the left
-                arr[k] = right[j]
+                a_list[k] = right_half[j]
                 j += 1
-            k += 1
-
-        # checking extra elements after the mergesort
-        # LEFT side
-        while i < len(left):
-            arr[k] = left[i]
-            k += 1
-            i += 1
-
-        # RIGHT side
-        while j < len(right):
-            arr[k] = right[j]
-            k += 1
-            j += 1
+            k = k + 1
+        while i < len(left_half):
+            a_list[k] = left_half[i]
+            i = i + 1
+            k = k + 1
+        while j < len(right_half):
+            a_list[k] = right_half[j]
+            j = j + 1
+            k = k + 1
 
 
 # TODO Non-Recursive, one extra list Merge Sort
-# def iterative_merge_sort():
+# TODO Change comments
+# def iterative_merge_sort(arr: list):
+# width = 1
+# n = len(arr)
+# # subarray size grows by powers of 2
+# # since growth of loop condition is exponential,
+# # time consumed is logarithmic (log2n)
+# while width < n:
+#     # always start from leftmost
+#     left = 0
+#     while left < n:
+#         r = min(left + (width * 2 - 1), n - 1)
+#         m = min(left + width - 1, n - 1)
+#         # final merge should consider
+#         # unmerged sublist if input arr
+#         # size is not power of 2
+#         merge(arr, left, m, r)
+#         left += width * 2
+#     # Increasing sub array size by powers of 2
+#     width *= 2
+# return arr
+
+# Bottom-up merge sort is a non-recursive variant of the merge sort,
+# in which the array is sorted by a sequence of passes.
+# During each pass, the array is divided into blocks of size m.
+# (Initially, m = 1). Every two adjacent blocks are merged (as in normal merge sort),
+# and the next pass is made with a twice larger value of m.
 
 
 # def partition(arr, low, high):
@@ -95,7 +108,8 @@ def merge_sort(arr: list):
 
 # TODO Sedgewick points
 # TODO Quick Sort
-# def quick_sort(arr, low, high):
+# TODO Quick Sort Helper (arr, low, high)
+# def quick_sort(arr: list):
 #     if len(arr) == 1:
 #         return arr
 #     if low < high:
