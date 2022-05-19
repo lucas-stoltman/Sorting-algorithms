@@ -28,6 +28,7 @@ def insertion_sort(arr: list):
     return True
 
 
+# Merge Sort (Recursive)
 def merge_sort(arr: list):
     if len(arr) > 1:
         mid = len(arr) // 2
@@ -59,33 +60,26 @@ def merge_sort(arr: list):
             k = k + 1
 
 
-# TODO Non-Recursive, one extra list Merge Sort
-# TODO Change comments
+# Merge Sort (Iterative)
 def iterative_merge_sort(arr: list):
-    # start with least partition size of 2^0 = 1
     width = 1
     n = len(arr)
-    # subarray size grows by powers of 2
-    # since growth of loop condition is exponential,
-    # time consumed is logarithmic (log2n)
+
     while width < n:
-        # always start from leftmost
+        # start on the left
         left = 0
         while left < n:
             right = min(left + (width * 2 - 1), n - 1)
             mid = min(left + width - 1, n - 1)
-            # final merge should consider
-            # unmerged sublist if input arr
-            # size is not power of 2
+            # combine left and right into a subarray
             merge(arr, left, mid, right)
             left += width * 2
-        # Increasing sub array size by powers of 2
+        # double the subarray width after a merge
         width *= 2
     return arr
 
 
-# TODO comment
-# Merge Function
+# iterative_merge_sort() helper function
 def merge(arr: list, left, mid, right):
     n1 = mid - left + 1
     n2 = right - mid
@@ -117,13 +111,12 @@ def merge(arr: list, left, mid, right):
         k += 1
 
 
-# TODO Sedgewick points
-# TODO Quick Sort
-# TODO Quick Sort Helper (arr, low, high)
+# Quick Sort
 def quick_sort(arr: list):
     quick_sort_helper(arr, 0, len(arr) - 1)
 
 
+# quick_sort() helper function
 def quick_sort_helper(arr: list, first, last):
     if first < last:
         split_point = partition(arr, first, last)
@@ -132,6 +125,7 @@ def quick_sort_helper(arr: list, first, last):
         quick_sort_helper(arr, split_point + 1, last)
 
 
+# quick_sort() helper function
 def partition(arr: list, first, last):
     pivot_value = arr[first]
     left_mark = first + 1
