@@ -149,6 +149,8 @@ def partition(arr: list, first, last):
     return right_mark
 
 
+# TODO Fix shell sort.
+#  It shouldn't have the same runtime as insertion sort.
 def shell_sort(arr: list):
     size = len(arr)
     gap = size // 2
